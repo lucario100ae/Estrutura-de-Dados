@@ -15,16 +15,15 @@ typedef struct noA {
  */
 int mesmos_nos(TNoA *a1, TNoA *a2) {
     if (a1 == NULL && a2 == NULL) return 1;
-    
     if (a1 == NULL || a2 == NULL) return 0;
 
     if (a1->info == a2->info) {
-        return mesmos_nos(a1->esq, a2->esq) && mesmos_nos(a1->dir, a2->dir);
+        return (mesmos_nos(a1->esq, a2->esq) && mesmos_nos(a1->dir, a2->dir)) ||
+               (mesmos_nos(a1->esq, a2->dir) && mesmos_nos(a1->dir, a2->esq));
     }
 
-    return (mesmos_nos(a1->esq, a2->dir) && mesmos_nos(a1->dir, a2->esq)) || (mesmos_nos(a1->esq, a2) && mesmos_nos(a1->dir, a2));
+    return 0; 
 }
-
 
 void imprime(TNoA *nodo, int tab) {
     for (int i = 0; i < tab; i++) {
